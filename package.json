@@ -16,8 +16,8 @@
     "react-markdown": "^7.1.1"
   },
   "devDependencies": {
-    "@contentful/rich-text-types": "^15.9.1",
     "@contentful/rich-text-react-renderer": "^15.9.1",
+    "@contentful/rich-text-types": "^15.9.1",
     "@netlify/plugin-nextjs": "^4.0.0-beta.12"
   }
 }
