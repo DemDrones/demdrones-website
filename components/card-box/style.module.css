@@ -1,0 +1,9 @@
+.cardbox {
+  font-size: 13px;
+}
+
+.cardbox:not(.cardboxMinimal) {
+  background-color: var(--color-background-alternative);
+  padding: 2ch;
+  aspect-ratio: 16/9;
+}

@@ -1,7 +1,12 @@
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import Head from 'next/head';
-import { ContentfulApi } from '../utils/contentful';
-import { richText } from '../utils/rich-text';
+import { About } from "@components/about";
+import { CardBoxList } from "@components/card-box-list";
+import { Hero } from "@components/hero";
+import { StockList } from "@components/stock-list";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import Head from "next/head";
+import Image from "next/image";
+import { ContentfulApi } from "../utils/contentful";
+import { richText } from "../utils/rich-text";
 
 export default function Home(props) {
   const global = props.globalCollection.items[0];
@@ -10,56 +15,62 @@ export default function Home(props) {
   const projects = props.projectCollection.items;
   const stockMedia = props.stockMediaCollection.items;
 
+  console.log(global);
+
   return (
-      <div className="container">
-        <Head>
-          <title>{global.title}</title>
-        </Head>
+    <div className="container">
+      <Head>
+        <title>{global.title}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
 
-        <main>
+      <main>
+        <Hero>
           <h1>{global.title}</h1>
+        </Hero>
 
-          <h2>Services</h2>
-          <ul className="unstyled-list col3">
-            {serviceSummaries.map((entry, index) => (
-                <li key={index}>
-                  <h3>{entry.heading}</h3>
-                  <p>{entry.body}</p>
-                </li>
-            ))}
-          </ul>
+        <h2 className="dd-container a11y-visually-hidden">Services</h2>
+        <CardBoxList className="dd-container" entries={serviceSummaries} />
 
+        <About heading={about.heading} body={about.body} />
 
-          <h2>{about.heading}</h2>
-          {documentToReactComponents(about.body.json, richText)}
-
-          <ul className="unstyled-list col3">
+        <div className="dd-container dd-section">
+          <ul className="unstyled-list dd-grid dd-grid--3col">
             {projects.map((entry, index) => (
-                <li key={index}>
-                  <img src={entry.thumbnail.url} width={entry.thumbnail.width} height={entry.thumbnail.height} alt=""/>
-                  <h3>{entry.title}</h3>
-                  <p>{entry.description}</p>
-                </li>
+              <li key={index}>
+                <Image
+                  src={entry.thumbnail.url}
+                  width={entry.thumbnail.width}
+                  height={entry.thumbnail.height}
+                  alt=""
+                  loading="lazy"
+                />
+                <h3>{entry.title}</h3>
+                <p>{entry.description}</p>
+              </li>
             ))}
           </ul>
+        </div>
 
-          <ul className="unstyled-list col3">
-            {stockMedia.map((entry, index) => (
-                <li key={index}>
-                  <a href={entry.url} rel="noreferrer" target="_blank">
-                    <img
-                        src={entry.preview.url}
-                        width={entry.preview.width}
-                        height={entry.preview.height}
-                        alt=""
-                    />
-                  </a>
-                </li>
-            ))}
-          </ul>
+        <div className="dd-container dd-section theme theme--with-background theme--dark">
+          <h2 className="dd-section--inner bottom-only">
+            Purchase assets for your next project.
+          </h2>
+          <StockList entries={stockMedia} />
+        </div>
+      </main>
 
-        </main>
-      </div>
+      <footer className="dd-container dd-section">
+        <span>
+          <a href={global.instagram}>IG</a> / <a href={global.tiktok}>TikTok</a>
+        </span>
+      </footer>
+    </div>
   );
 }
 

@@ -1,0 +1,27 @@
+.dd-page {
+  padding-top: var(--page-padding-vertical);
+  padding-bottom: var(--page-padding-vertical);
+}
+
+.dd-container {
+  display: grid;
+  grid-template-columns: var(--page-padding-horizontal) 1fr var(--page-padding-horizontal);
+  width: 100%;
+}
+
+.dd-container > * {
+  grid-column: 2;
+}
+
+.dd-section {
+  padding-top: var(--section-padding-vertical);
+  padding-bottom: var(--section-padding-vertical);
+}
+
+.dd-section--inner {
+  padding-bottom: var(--section--inner-padding-vertical);
+}
+
+.dd-section--inner:not(.bottom-only) {
+  padding-top: var(--section--inner-padding-vertical);
+}
