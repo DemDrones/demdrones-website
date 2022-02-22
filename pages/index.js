@@ -2,11 +2,9 @@ import { About } from "@components/about";
 import { CardBoxList } from "@components/card-box-list";
 import { Hero } from "@components/hero";
 import { StockList } from "@components/stock-list";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
 import Image from "next/image";
 import { ContentfulApi } from "../utils/contentful";
-import { richText } from "../utils/rich-text";
 
 export default function Home(props) {
   const global = props.globalCollection.items[0];
@@ -14,8 +12,6 @@ export default function Home(props) {
   const serviceSummaries = props.serviceSummaryCollection.items;
   const projects = props.projectCollection.items;
   const stockMedia = props.stockMediaCollection.items;
-
-  console.log(global);
 
   return (
     <div className="container">
@@ -34,8 +30,26 @@ export default function Home(props) {
           <h1>{global.title}</h1>
         </Hero>
 
+        <div className="dd-section dd-container">
+          <h1 style={{ maxWidth: "50ch" }}>
+            DemDrones is a studio of licensed drone-pilots, with a focus on
+            cinematography
+          </h1>
+        </div>
+
         <h2 className="dd-container a11y-visually-hidden">Services</h2>
         <CardBoxList className="dd-container" entries={serviceSummaries} />
+
+        <div className="dd-container dd-section">
+          <video
+            src="/video/pex-c.mp4"
+            muted
+            loop
+            autoPlay={true}
+            width={1024}
+            height={576}
+          />
+        </div>
 
         <About heading={about.heading} body={about.body} />
 

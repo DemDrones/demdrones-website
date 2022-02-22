@@ -1,3 +1,12 @@
+@font-face {
+  font-display: swap;
+  font-family: 'headline';
+  font-style: normal;
+  font-weight: 300;
+
+  src: url("/fonts/headline.woff") format('woff');
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -21,7 +30,7 @@ html, body {
   4. Add accessible line-height
   5. Improve text rendering
 */
-body {
+html {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -31,6 +40,7 @@ body {
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 /*
   7. Remove built-in form typography styles
@@ -52,12 +62,28 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 
+button, a {
+  outline-offset: 0.5rem;
+}
+
+video {
+  width: 100%;
+}
+
+::selection {
+  background-color: rgba(0, 0, 255, 1);
+}
+
 
 
 /* ----- */
 
 html {
-font-family: 'Roboto Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: 'Roboto Mono', "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'headline', sans-serif;
 }
 
 p {
