@@ -15,14 +15,9 @@ export function Rig() {
   const rollFrequency = 2;
 
   useFrame(() => {
-    vec.set(
-      0.15 + mouse.x / 20,
-      0.15, //0.05 + mouse.y / 32,
-      0.15 + mouse.y / 32
-      // 0.1 + (mouse.y) / 32,
-    );
+    vec.set(0.15 + -mouse.x / 20, 0.15, 0.15 + mouse.y / 32);
 
-    camera.position.lerp(vec, 0.02);
+    camera.position.lerp(vec, 0.05);
   });
   return (
     <CameraShake

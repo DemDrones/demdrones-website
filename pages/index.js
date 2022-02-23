@@ -4,6 +4,7 @@ import { Hero } from "@components/hero";
 import { StockList } from "@components/stock-list";
 import Head from "next/head";
 import Image from "next/image";
+import LazyLoad from "react-lazyload";
 import { ContentfulApi } from "../utils/contentful";
 
 export default function Home(props) {
@@ -46,14 +47,18 @@ export default function Home(props) {
         <CardBoxList className="dd-container" entries={serviceSummaries} />
 
         <div className="dd-container dd-section">
-          <video
-            src="/video/pex-c.mp4"
-            muted
-            loop
-            autoPlay={true}
-            width={1024}
-            height={576}
-          />
+          <LazyLoad height={576}>
+            <video
+              src="/video/pex-c.mp4"
+              muted
+              loop
+              preload="none"
+              playsInline={true}
+              autoPlay={true}
+              width={1024}
+              height={576}
+            />
+          </LazyLoad>
         </div>
 
         <About heading={about.bodyHeading} body={about.body} />
