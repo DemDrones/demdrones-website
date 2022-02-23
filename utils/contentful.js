@@ -21,7 +21,7 @@ export class ContentfulApi {
         }
         aboutCollection {
           items {
-            heading
+            bodyHeading
             body {
               json
             }
@@ -83,7 +83,7 @@ export class ContentfulApi {
 
     try {
       const data = await fetch(fetchUrl, fetchOptions).then((response) =>
-          response.json(),
+        response.json()
       );
       return data;
     } catch (error) {

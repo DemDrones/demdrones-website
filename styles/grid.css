@@ -1,7 +1,7 @@
 :root {
   --grid-column-count: 4;
-  --grid-column-count-2col: 1;
-  --grid-column-count-3col: 1;
+  --grid-column-count-2col:4;
+  --grid-column-count-3col: 4;
   --grid-gap: 2.5rem;
 }
 

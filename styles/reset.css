@@ -18,6 +18,7 @@
 */
 * {
   margin: 0;
+  //outline: 1px solid red;
 }
 /*
   3. Allow percentage-based heights in the application
@@ -62,8 +63,8 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 
-button, a {
-  outline-offset: 0.5rem;
+button:focus-visible, a:focus-visible {
+    outline-offset: 0.5rem;
 }
 
 video {

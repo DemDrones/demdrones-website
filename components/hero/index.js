@@ -1,8 +1,12 @@
+import { PdwFiber } from "@components/pdw-fiber";
 import * as style from "./style.module.css";
 
 export function Hero({ children }) {
   return (
     <div className={style.hero}>
+      <div className={style.canvas}>
+        <PdwFiber />
+      </div>
       <div className={`dd-section ${style.ui}`}>
         <div className="dd-container">{children}</div>
 

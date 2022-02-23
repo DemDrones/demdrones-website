@@ -9,6 +9,7 @@ import { ContentfulApi } from "../utils/contentful";
 export default function Home(props) {
   const global = props.globalCollection.items[0];
   const about = props.aboutCollection.items[0];
+  console.log(about);
   const serviceSummaries = props.serviceSummaryCollection.items;
   const projects = props.projectCollection.items;
   const stockMedia = props.stockMediaCollection.items;
@@ -18,7 +19,11 @@ export default function Home(props) {
       <Head>
         <title>{global.title}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="true"
+        />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
           rel="stylesheet"
@@ -51,7 +56,7 @@ export default function Home(props) {
           />
         </div>
 
-        <About heading={about.heading} body={about.body} />
+        <About heading={about.bodyHeading} body={about.body} />
 
         <div className="dd-container dd-section">
           <ul className="unstyled-list dd-grid dd-grid--3col">
