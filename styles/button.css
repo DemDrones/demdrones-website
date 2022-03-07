@@ -1,0 +1,74 @@
+.btn-fx-1 {
+  --border-radius: 0.25em;
+  --transition-duration: .3s;
+  position: relative;
+  display: inline-block;
+  border-radius: var(--border-radius);
+  line-height: 1;
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: var(--transition-duration);
+  cursor: pointer;
+}
+.btn-fx-1 span, .btn-fx-1 .btn-fx-1__icon-wrapper {
+  position: relative;
+  z-index: 2;
+}
+.btn-fx-1 .icon {
+  display: block;
+  will-change: transform;
+  transition: var(--transition-duration);
+}
+.btn-fx-1 .icon:first-child {
+  color: var(--color-primary);
+}
+.btn-fx-1 .icon:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  color: var(--color-white);
+  transform: translateY(100%);
+}
+.btn-fx-1:hover {
+  color: var(--color-white);
+}
+.btn-fx-1:hover .icon:first-child {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+.btn-fx-1:hover .icon:last-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+.btn-fx-1:hover .btn-fx-1__inner::after {
+  transform: skewY(0deg) scaleY(2);
+}
+.btn-fx-1:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--color-bg), 0 0 0 3px var(--color-primary);
+}
+
+.btn-fx-1__inner {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsla(var(--color-primary-h), var(--color-primary-s), var(--color-primary-l), 0.15);
+  overflow: hidden;
+  clip-path: inset(0% 0% 0% 0% round var(--border-radius));
+}
+.btn-fx-1__inner::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: -5%;
+  width: 110%;
+  height: 100%;
+  background-color: var(--color-primary);
+  transform-origin: center bottom;
+  transform: skewY(10deg) scaleY(0);
+  transition: -webkit-transform var(--transition-duration);
+  transition: transform var(--transition-duration);
+}

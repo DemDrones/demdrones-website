@@ -1,6 +1,6 @@
 import { CameraShake } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { Vector3 } from "three";
 
 export function Rig() {
@@ -14,11 +14,15 @@ export function Rig() {
   const pitchFrequency = 0.15;
   const rollFrequency = 2;
 
-  useFrame(() => {
-    vec.set(0.15 + -mouse.x / 20, 0.15, 0.15 + mouse.y / 32);
+  useLayoutEffect(() => {
+    camera.position.y = 2;
+  }, [camera]);
 
-    camera.position.lerp(vec, 0.05);
+  useFrame(() => {
+    vec.set(0.15 + -mouse.x / 20, 0.15, 0.15 + mouse.x / 32);
+    camera.position.lerp(vec, 0.02);
   });
+
   return (
     <CameraShake
       intensity={0.25}

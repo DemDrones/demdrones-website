@@ -11,7 +11,7 @@ export function Hero({ children }) {
         <div className="dd-container">{children}</div>
 
         <div className={`dd-container ${style.arrow}`}>
-          <div style={{ writingMode: "vertical-lr" }}>See more</div>
+          <div style={{ writingMode: "vertical-lr" }}>Scroll down</div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             height="24px"

@@ -42,3 +42,11 @@ body {
   background-color: var(--color-background);
   color: var(--color-foreground);
 }
+
+.image-same-height img,
+.image-same-height video {
+  aspect-ratio: 16/9;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}

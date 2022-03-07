@@ -8,8 +8,9 @@ import { Vector3 } from "three";
 export function PdwFiber() {
   return (
     <Canvas
-      dpr={[1, 1.5]}
+      dpr={[1, 2]}
       colorManagement
+      shadows={false}
       camera={{ fov: 30, far: 2, position: new Vector3(0.15, 0.15, 0.15) }}
     >
       <Suspense fallback={null}>
@@ -17,18 +18,18 @@ export function PdwFiber() {
           shadows={false}
           adjustCamera={false}
           environment={null}
-          contactShadow={{ position: [0, -0.015, 0] }}
+          contactShadow={false}
         >
           <Model scale={0.01} />
         </Stage>
       </Suspense>
 
-      {/*<OrbitControls*/}
-      {/*  makeDefault*/}
-      {/*  enableZoom={false}*/}
-      {/*  enablePan={false}*/}
-      {/*  // enableRotate={false}*/}
-      {/*/>*/}
+      <OrbitControls
+        makeDefault
+        enableZoom={false}
+        enablePan={false}
+        enableRotate={false}
+      />
       <Rig />
     </Canvas>
   );

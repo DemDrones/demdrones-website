@@ -36,6 +36,7 @@ export class ContentfulApi {
               height
               url
               title
+              contentType
             }
           }
         }
@@ -54,6 +55,7 @@ export class ContentfulApi {
               url
               width
               height
+              contentType
             }
           }
         }
