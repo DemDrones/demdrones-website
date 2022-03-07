@@ -4,6 +4,8 @@ import * as style from "./style.module.css";
 export function Hero({ children }) {
   return (
     <div className={style.hero}>
+      <div className={style.circle}>DEMDRONES</div>
+
       <div className={style.canvas}>
         <PdwFiber />
       </div>

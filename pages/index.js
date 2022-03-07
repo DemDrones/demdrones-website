@@ -18,6 +18,12 @@ export default function Home(props) {
   return (
     <div className="container">
       <Head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Six+Caps&display=swap"
+          rel="stylesheet"
+        />
         <title>{global.title}</title>
       </Head>
 

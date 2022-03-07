@@ -14,6 +14,15 @@
 }
 
 
+@keyframes fade-in {
+  from {
+    opacity: 0
+  }
+  to {
+    opacity: 1
+  }
+}
+
 .ui {
   position: relative;
   display: flex;
@@ -22,10 +31,30 @@
   height: 100%;
   pointer-events: none;
   mix-blend-mode: difference;
+  opacity: 0;
+  animation: fade-in 1s 2.25s forwards;
 }
 
 .arrow {
   display: grid;
   gap: 1rem;
   justify-items: flex-end;
+}
+
+
+.circle {
+  --size: 0.125vw;
+  --color: var(--color-accent);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10vw;
+  font-family: 'headline', sans-serif;
+  font-weight: bold;
+  //color: chartreuse;
+  color: var(--color-background);
+  line-height: 1;
+  text-shadow: calc(var(--size) * -1) calc(var(--size) * -1) 0 var(--color), var(--size) calc(var(--size) * -1) 0 var(--color), calc(var(--size) * -1) var(--size) 0 var(--color), var(--size) var(--size) 0 var(--color);
+  animation: fade-in 1s 1.25s ease-in reverse forwards;
 }

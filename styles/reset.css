@@ -68,10 +68,8 @@ video {
 }
 
 ::selection {
-  background-color: rgba(0, 0, 255, 1);
+  background-color: var(--color-accent);
 }
-
-
 
 /* ----- */
 
