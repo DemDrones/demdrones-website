@@ -5,8 +5,10 @@ import { Hero } from "@components/hero";
 import { ImageOrVideo } from "@components/image-or-video";
 import { IntroVideo } from "@components/intro-video";
 import { StockList } from "@components/stock-list";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
 import { ContentfulApi } from "../utils/contentful";
+import { richText } from "../utils/rich-text";
 
 export default function Home(props) {
   const global = props.global;
@@ -18,36 +20,18 @@ export default function Home(props) {
   return (
     <div className="container">
       <Head>
-        <meta name="color-scheme" content="dark" />
-        <meta name="applicable-device" content="pc,mobile" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content="DemDrones" />
-        <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
-        />
-
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Six+Caps&display=swap"
-          rel="stylesheet"
-        />
-
         <title>{global.title}</title>
       </Head>
 
       <main>
-        <Hero>
+        <Hero global={global}>
           <h1>{global.title}</h1>
         </Hero>
 
         <div className="dd-section dd-container">
-          <h1 style={{ maxWidth: "50ch" }}>{about.servicesBlurb}</h1>
+          <div style={{ maxWidth: "50ch" }}>
+            {documentToReactComponents(about.servicesBlurb.json, richText)}
+          </div>
         </div>
 
         <h2 className="dd-container a11y-visually-hidden">Services</h2>
@@ -84,8 +68,8 @@ export default function Home(props) {
           <StockList entries={stockMedia} />
         </div>
 
-        {footers.map((f) => (
-          <div className="dd-container dd-section image-same-height">
+        {footers.map((f, i) => (
+          <div className="dd-container dd-section image-same-height" key={i}>
             <h2
               style={{
                 fontSize: "calc(1.5rem + 2.5vw)",
@@ -131,7 +115,9 @@ export async function getStaticProps() {
           shareDescription
         }
         about(id: "3Ood3dTWFnQzPkBTJOiy3K") {
-          servicesBlurb
+          servicesBlurb {
+            json
+          }
           servicesCollection {
             items {
               heading

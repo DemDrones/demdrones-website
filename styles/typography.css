@@ -1,3 +1,7 @@
 .t-mono {
   font-family: 'Roboto Mono', monospace;
 }
+
+.t-h1 {
+  font-family: 'headline', sans-serif;
+}

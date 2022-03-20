@@ -23,13 +23,6 @@ export function PdwFiber() {
           <Model scale={0.01} />
         </Stage>
       </Suspense>
-
-      <OrbitControls
-        makeDefault
-        enableZoom={false}
-        enablePan={false}
-        enableRotate={false}
-      />
       <Rig />
     </Canvas>
   );

@@ -18,6 +18,7 @@ export function Model(props) {
   const { y } = useSpring(
     {
       y: -scrollY / height / 2,
+      from: { y: 0 },
       config: config.molasses,
       onChange: (e) => (scene.position.y = -e.value.y / 2),
     },

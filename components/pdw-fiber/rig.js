@@ -19,13 +19,13 @@ export function Rig() {
   }, [camera]);
 
   useFrame(() => {
-    vec.set(0.15 + -mouse.x / 20, 0.15, 0.15 + mouse.x / 32);
+    vec.set(0.15 + -mouse.x / 50, 0.165, 0.15 + mouse.x / 80);
     camera.position.lerp(vec, 0.02);
   });
 
   return (
     <CameraShake
-      intensity={0.25}
+      intensity={0.15}
       maxYaw={maxYaw}
       maxPitch={maxPitch}
       maxRoll={maxRoll}
