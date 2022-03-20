@@ -1,10 +1,12 @@
-import { About } from "@components/about";
+import * as style from "@components/about/style.module.css";
 import { CardBoxList } from "@components/card-box-list";
+import { Contact } from "@components/contact";
 import { Footer } from "@components/footer";
 import { Hero } from "@components/hero";
 import { ImageOrVideo } from "@components/image-or-video";
 import { IntroVideo } from "@components/intro-video";
 import { StockList } from "@components/stock-list";
+import { Testimonials } from "@components/testimonial/testimonials";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
 import { ContentfulApi } from "../utils/contentful";
@@ -29,7 +31,7 @@ export default function Home(props) {
         </Hero>
 
         <div className="dd-section dd-container">
-          <div style={{ maxWidth: "50ch" }}>
+          <div className="t-h1" style={{ maxWidth: "50ch" }}>
             {documentToReactComponents(about.servicesBlurb.json, richText)}
           </div>
         </div>
@@ -40,60 +42,57 @@ export default function Home(props) {
           entries={about.servicesCollection.items}
         />
 
-        <IntroVideo />
-
-        <About
-          heading={about.bodyHeading}
-          body={about.body}
-          bodyExtra={about.bodyExtra}
-          testimonials={about.testimonialsCollection.items}
-        />
+        <section className={`dd-container dd-section`}>
+          <h2>{about.bodyHeading}</h2>
+          <div className="dd-grid dd-grid--2col dd-section--inner">
+            <div>{documentToReactComponents(about.body.json, richText)}</div>
+            <div>
+              <IntroVideo />
+            </div>
+          </div>
+        </section>
 
         <div className="dd-container dd-section image-same-height">
           <ul className="unstyled-list dd-grid dd-grid--3col">
             {projects.map((entry, index) => (
               <li key={index}>
                 <ImageOrVideo asset={entry.thumbnail} />
-                <h3>{entry.title}</h3>
-                <p>{entry.description}</p>
+                <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
+                <p style={{ marginTop: "0rem" }}>{entry.description}</p>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="dd-container dd-section theme theme--with-background theme--dark">
-          <h2 className="dd-section--inner bottom-only">
-            Purchase assets for your next project.
-          </h2>
-          <StockList entries={stockMedia} />
-        </div>
+        <section className="dd-container dd-section theme--with-background theme--dark">
+          <div className={`dd-section--inner ${style.columns}`}>
+            {documentToReactComponents(about.bodyExtra.json, richText)}
+          </div>
+        </section>
+
+        {stockMedia.length ? (
+          <div className="dd-container dd-section theme">
+            <h2 className="dd-section--inner bottom-only">
+              Purchase assets for your next project.
+            </h2>
+            <StockList entries={stockMedia} />
+          </div>
+        ) : null}
+
+        <section className="dd-container dd-section">
+          <div className="dd-section--inner">
+            <h2 className="a11y-visually-hidden">Testimonials</h2>
+            <Testimonials testimonials={about.testimonialsCollection.items} />
+          </div>
+        </section>
 
         {footers.map((f, i) => (
-          <div className="dd-container dd-section image-same-height" key={i}>
-            <h2
-              style={{
-                fontSize: "calc(1.5rem + 2.5vw)",
-                lineHeight: "1",
-                maxWidth: "20ch",
-              }}
-            >
-              {f.headline}
-            </h2>
-            <ul
-              className="unstyled-list"
-              style={{
-                fontSize: "1.5rem",
-                lineHeight: "1",
-                maxWidth: "20ch",
-                display: "grid",
-                gap: "2rem",
-                marginTop: "4rem",
-              }}
-            >
-              <li>{f.email}</li>
-              <li>{f.phone}</li>
-            </ul>
-          </div>
+          <Contact
+            headline={f.headline}
+            email={f.email}
+            phone={f.phone}
+            key={i}
+          />
         ))}
       </main>
 

@@ -13,7 +13,7 @@ export function StockList({ entries }) {
               <CardBox minimal>
                 <a href={entry.url} rel="noreferrer" target="_blank">
                   <ImageOrVideo asset={image} />
-                  {entry.title && <h3>{entry.title}</h3>}
+                  <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
                 </a>
               </CardBox>
             </li>

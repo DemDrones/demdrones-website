@@ -23,7 +23,7 @@
 .dd-grid {
   display: grid;
   grid-column-gap: var(--grid-gap);
-  grid-template-columns: repeat(var(--grid-column-count), 1fr);
+  grid-template-columns: repeat(var(--grid-column-count), minmax(0, 1fr));
 }
 
 .dd-grid > * {

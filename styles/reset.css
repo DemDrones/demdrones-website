@@ -83,7 +83,7 @@ h1, h2, h3, h4, .t-headline {
   font-family: 'headline', sans-serif;
 }
 
-p {
+p, h1, h2, h3, q {
   max-width: 50ch;
 }
 
@@ -109,14 +109,4 @@ p {
   display: grid;
   align-items: center;
   justify-content: center;
-}
-
-p + p,
-h2 + p {
-  margin-top: 2rem;
-}
-
-h3 + p,
-p + h3 {
-  margin-block: 1rem;
 }

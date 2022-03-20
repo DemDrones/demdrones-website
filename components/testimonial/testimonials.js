@@ -9,13 +9,6 @@ export function Testimonials(props) {
       spaceBetween={30}
       centeredSlides={true}
       loop={true}
-      style={{
-        paddingBottom: "2rem",
-        "--swiper-pagination-bullet-inactive-color": "var(--color-accent)",
-        "--swiper-pagination-bullet-inactive-opacity": "1",
-        "--swiper-pagination-bullet-opacity": "1",
-        "--swiper-pagination-color": "var(--color-foreground)",
-      }}
       autoplay={{
         delay: 5000,
         disableOnInteraction: false,

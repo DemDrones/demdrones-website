@@ -1,9 +1,26 @@
+body .testimonials {
+  --swiper-pagination-bullet-inactive-color: var(--color-accent);
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-color: var(--color-foreground);
+  padding-bottom: 2rem;
+}
+
 .testimonials > * {
   align-items: center;
 }
 
+body .testimonials :global(.swiper-pagination) {
+  bottom: -4px;
+}
+
 .testimonial {
   text-align: center;
+}
+
+.testimonial q {
+  display: inline-block;
+  margin: 0 auto;
 }
 
 .testimonial blockquote {

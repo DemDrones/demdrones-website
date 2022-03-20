@@ -4,9 +4,9 @@ export function Testimonial(props) {
   return (
     <figure className={style.testimonial}>
       <blockquote cite={props.url}>
-        <p className="t-headline">{props.quote}</p>
+        <q className="t-headline">{props.quote}</q>
       </blockquote>
-      <figcaption>—{props.cite}</figcaption>
+      <figcaption>— {props.cite}</figcaption>
     </figure>
   );
 }

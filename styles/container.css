@@ -5,7 +5,7 @@
 
 .dd-container {
   display: grid;
-  grid-template-columns: var(--page-padding-horizontal) 1fr var(--page-padding-horizontal);
+  grid-template-columns: var(--page-padding-horizontal) minmax(0, 1fr) var(--page-padding-horizontal);
   width: 100%;
 }
 

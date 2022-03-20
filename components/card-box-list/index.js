@@ -11,7 +11,7 @@ export function CardBoxList({ className, entries }) {
     <div className={className}>
       <Swiper
         pagination={{
-          type: "progressbar",
+          clickable: true,
         }}
         className={styles.cardBoxList}
         spaceBetween={16}

@@ -4,4 +4,22 @@
 
 .t-h1 {
   font-family: 'headline', sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+
+p + p,
+h2 + p {
+  margin-top: 2rem;
+}
+
+h3 + p,
+p + h3 {
+  margin-block: 1rem;
+}
+
+
+.t-h1 > p + p {
+  margin-top: 1rem;
 }
