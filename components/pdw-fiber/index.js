@@ -23,6 +23,14 @@ export function PdwFiber() {
           <Model scale={0.01} />
         </Stage>
       </Suspense>
+      {Math.random() > 0.5 ? (
+        <OrbitControls
+          makeDefault
+          enableZoom={false}
+          enablePan={false}
+          enableRotate={false}
+        />
+      ) : null}
       <Rig />
     </Canvas>
   );

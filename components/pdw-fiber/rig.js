@@ -20,7 +20,7 @@ export function Rig() {
 
   useFrame(() => {
     vec.set(0.15 + -mouse.x / 50, 0.165, 0.15 + mouse.x / 80);
-    camera.position.lerp(vec, 0.02);
+    camera.position.lerp(vec, 0.015);
   });
 
   return (

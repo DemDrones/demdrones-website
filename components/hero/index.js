@@ -13,7 +13,6 @@ export function Hero({ children, global }) {
 
       <div className={`dd-section ${style.ui}`}>
         <div className="dd-container">{children}</div>
-
         <div className="dd-container">
           <div className={style.grid}>
             <Socials global={global} />
