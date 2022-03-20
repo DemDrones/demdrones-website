@@ -1,4 +1,3 @@
-import * as style from "@components/about/style.module.css";
 import { CardBoxList } from "@components/card-box-list";
 import { Contact } from "@components/contact";
 import { Footer } from "@components/footer";
@@ -13,10 +12,7 @@ import { ContentfulApi } from "../utils/contentful";
 import { richText } from "../utils/rich-text";
 
 export default function Home(props) {
-  const global = props.global;
-  const about = props.about;
-  const projects = props.projectCollection.items;
-  const stockMedia = props.stockMediaCollection.items;
+  const { global, about, projects, stock } = props;
   const footers = props.footerCollection.items;
 
   return (
@@ -30,61 +26,90 @@ export default function Home(props) {
           <h1>{global.title}</h1>
         </Hero>
 
-        <div className="dd-section dd-container">
-          <div className="t-h1" style={{ maxWidth: "50ch" }}>
-            {documentToReactComponents(about.servicesBlurb.json, richText)}
-          </div>
-        </div>
-
-        <h2 className="dd-container a11y-visually-hidden">Services</h2>
-        <CardBoxList
-          className="dd-container"
-          entries={about.servicesCollection.items}
-        />
-
-        <section className={`dd-container dd-section`}>
-          <h2>{about.bodyHeading}</h2>
-          <div className="dd-grid dd-grid--2col dd-section--inner">
-            <div>{documentToReactComponents(about.body.json, richText)}</div>
-            <div>
-              <IntroVideo />
+        {about.servicesCollection.items.length ? (
+          <div className="dd-section dd-container">
+            <div className="t-h1" style={{ maxWidth: "50ch" }}>
+              {documentToReactComponents(about.servicesBlurb.json, richText)}
             </div>
-          </div>
-        </section>
-
-        <div className="dd-container dd-section image-same-height">
-          <ul className="unstyled-list dd-grid dd-grid--3col">
-            {projects.map((entry, index) => (
-              <li key={index}>
-                <ImageOrVideo asset={entry.thumbnail} />
-                <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
-                <p style={{ marginTop: "0rem" }}>{entry.description}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <section className="dd-container dd-section theme--with-background theme--dark">
-          <div className={`dd-section--inner ${style.columns}`}>
-            {documentToReactComponents(about.bodyExtra.json, richText)}
-          </div>
-        </section>
-
-        {stockMedia.length ? (
-          <div className="dd-container dd-section theme">
-            <h2 className="dd-section--inner bottom-only">
-              Purchase assets for your next project.
-            </h2>
-            <StockList entries={stockMedia} />
+            <CardBoxList
+              className="dd-section--inner"
+              entries={about.servicesCollection.items}
+            />
           </div>
         ) : null}
 
-        <section className="dd-container dd-section">
-          <div className="dd-section--inner">
-            <h2 className="a11y-visually-hidden">Testimonials</h2>
-            <Testimonials testimonials={about.testimonialsCollection.items} />
+        {about.body.json ? (
+          <section className={`dd-container dd-section`}>
+            <h2>{about.bodyHeading}</h2>
+            <div className="dd-grid dd-grid--2col dd-section--inner">
+              <div>{documentToReactComponents(about.body.json, richText)}</div>
+              <IntroVideo />
+            </div>
+          </section>
+        ) : null}
+
+        {projects.elementsCollection.items.length ? (
+          <div className="dd-container dd-section image-same-height">
+            {projects.heading && (
+              <h2 className="dd-section--inner bottom-only">
+                {projects.heading}
+              </h2>
+            )}
+
+            <ul className="unstyled-list dd-grid dd-grid--3col">
+              {projects.elementsCollection.items.map((entry, index) => (
+                <li key={index}>
+                  <ImageOrVideo asset={entry.thumbnail} />
+                  <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
+                  <p style={{ marginTop: "0rem" }}>{entry.description}</p>
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
+        ) : null}
+
+        {about.safetyIntroduction?.json ? (
+          <section className="dd-container dd-section theme--with-background theme--dark">
+            {about.safetyHeading && <h2>{about.safetyHeading}</h2>}
+            <div className="dd-grid dd-grid--2col dd-section--inner">
+              <div>
+                {documentToReactComponents(
+                  about.safetyIntroduction.json,
+                  richText
+                )}
+              </div>
+              <div>
+                {documentToReactComponents(
+                  about.safetyContinued.json,
+                  richText
+                )}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {stock.elementsCollection.items.length ? (
+          <div className="dd-container dd-section theme">
+            {stock.heading && (
+              <h2 className="dd-section--inner bottom-only">{stock.heading}</h2>
+            )}
+            <StockList entries={stock.elementsCollection.items} />
+          </div>
+        ) : null}
+
+        {about.testimonialsCollection.items.length ? (
+          <section
+            className="dd-container dd-section"
+            style={{
+              borderBlock: "1px solid rgba(255, 255, 255, .17)",
+            }}
+          >
+            <div className="dd-section--inner">
+              <h2 className="a11y-visually-hidden">Testimonials</h2>
+              <Testimonials testimonials={about.testimonialsCollection.items} />
+            </div>
+          </section>
+        ) : null}
 
         {footers.map((f, i) => (
           <Contact
@@ -127,9 +152,6 @@ export async function getStaticProps() {
           body {
             json
           }
-          bodyExtra {
-            json
-          }
           testimonialsCollection {
             items {
               quote
@@ -137,19 +159,12 @@ export async function getStaticProps() {
               url
             }
           }
-        }
-        projectCollection {
-          items {
-            title
-            description
-            thumbnail {
-              title
-              description
-              contentType
-              url
-              width
-              height
-            }
+          safetyHeading
+          safetyIntroduction {
+            json
+          }
+          safetyContinued {
+            json
           }
         }
         stockMediaCollection {
@@ -173,7 +188,48 @@ export async function getStaticProps() {
             phone
           }
         }
+        projects: bundle(id: "2rvnKH9qLi0UNsxP0jJRY6") {
+          heading
+          elementsCollection {
+            items {
+              __typename
+              ... on Project {
+                title
+                description
+                thumbnail {
+                  title
+                  description
+                  contentType
+                  url
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
+        stock: bundle(id: "1YltWWDlbfU2QbUxz6YdC6") {
+          heading
+          elementsCollection {
+            items {
+              __typename
+              ... on StockMedia {
+                title
+                url
+                preview {
+                  title
+                  description
+                  contentType
+                  url
+                  width
+                  height
+                }
+              }
+            }
+          }
+        }
       }
+
     `;
   const data = await ContentfulApi.getData(query);
   return { props: data.data };

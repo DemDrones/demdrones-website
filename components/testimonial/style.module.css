@@ -15,12 +15,10 @@ body .testimonials :global(.swiper-pagination) {
 }
 
 .testimonial {
-  text-align: center;
 }
 
 .testimonial q {
   display: inline-block;
-  margin: 0 auto;
 }
 
 .testimonial blockquote {

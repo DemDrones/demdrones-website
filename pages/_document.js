@@ -17,6 +17,23 @@ export default function Document() {
           name="apple-mobile-web-app-status-bar-style"
           content="black-translucent"
         />
+        <meta name="referrer" content="no-referrer" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DemDrones" />
+        <meta property="og:url" content="https://demdrones.co.uk" />
+        <meta property="og:title" content="DemDrones" />
+        <meta property="og:description" content="Drone services." />
+        <meta property="og:locale" content="en" />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
+        <meta
+          property="og:image"
+          content="https://demdrones.co.uk/social.png"
+        />
+        <meta property="twitter:title" content="DemDrones" />
+        <meta property="twitter:description" content="Drone services." />
+        <meta property="twitter:card" content="summary_large_image" />
+        <link href="https://demdrones.co.uk" rel="canonical" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -31,6 +48,22 @@ export default function Document() {
 
         <link rel="icon" href="/favicon.png" sizes="any" type="image/png" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `{
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "DemDrones",
+            "description": "DemDrones Drone services",
+            "publisher": {
+              "@type": "ProfilePage",
+              "name": "DemDrones"
+            }
+          }`,
+          }}
+        ></script>
       </Head>
       <body>
         <Main />

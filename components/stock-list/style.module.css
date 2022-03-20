@@ -2,4 +2,5 @@
 
 .stocklist a {
   color: currentColor;
+  display: block;
 }
