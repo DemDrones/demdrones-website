@@ -3,65 +3,7 @@ const defaultOptions = {
 };
 
 export class ContentfulApi {
-  static async getData() {
-    const query = `
-      {
-        globalCollection {
-          items {
-            title
-            instagram
-            tiktok
-            description
-            shareDescription
-            appName
-            socialImage {
-              url
-            }
-          }
-        }
-        aboutCollection {
-          items {
-            bodyHeading
-            body {
-              json
-            }
-          }
-        }
-        stockMediaCollection {
-          items {
-            title
-            url
-            preview {
-              width
-              height
-              url
-              title
-              contentType
-            }
-          }
-        }
-        serviceSummaryCollection {
-          items {
-            heading
-            body
-          }
-        }
-        projectCollection {
-          items {
-            title
-            description
-            thumbnail {
-              title
-              url
-              width
-              height
-              contentType
-            }
-          }
-        }
-      }
-    `;
-
+  static async getData(query) {
     const response = await this.callContentful(query);
     return response;
   }

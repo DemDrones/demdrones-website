@@ -24,4 +24,5 @@
 
 .dd-section--inner:not(.bottom-only) {
   padding-top: var(--section--inner-padding-vertical);
+  row-gap: 2rem;
 }

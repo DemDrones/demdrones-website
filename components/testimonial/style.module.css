@@ -1,0 +1,11 @@
+.testimonials > * {
+  align-items: center;
+}
+
+.testimonial {
+  text-align: center;
+}
+
+.testimonial blockquote {
+  font-size: 200%;
+}

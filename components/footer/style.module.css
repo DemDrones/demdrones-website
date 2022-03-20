@@ -1,0 +1,9 @@
+.list {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
