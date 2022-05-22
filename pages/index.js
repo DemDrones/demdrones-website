@@ -26,7 +26,7 @@ export default function Home(props) {
           <h1>{global.title}</h1>
         </Hero>
 
-        {about.servicesCollection.items.length ? (
+        {about?.servicesCollection?.items?.length ? (
           <div className="dd-section dd-container">
             <div className="t-h1" style={{ maxWidth: "50ch" }}>
               {documentToReactComponents(about.servicesBlurb.json, richText)}
@@ -38,7 +38,7 @@ export default function Home(props) {
           </div>
         ) : null}
 
-        {about.body.json ? (
+        {about?.body?.json ? (
           <section className={`dd-container dd-section`}>
             <h2>{about.bodyHeading}</h2>
             <div className="dd-grid dd-grid--2col dd-section--inner">
@@ -48,7 +48,7 @@ export default function Home(props) {
           </section>
         ) : null}
 
-        {projects.elementsCollection.items.length ? (
+        {projects?.elementsCollection?.items?.length ? (
           <div className="dd-container dd-section image-same-height">
             {projects.heading && (
               <h2 className="dd-section--inner bottom-only">
@@ -88,7 +88,7 @@ export default function Home(props) {
           </section>
         ) : null}
 
-        {stock.elementsCollection.items.length ? (
+        {stock?.elementsCollection?.items?.length ? (
           <div className="dd-container dd-section theme">
             {stock.heading && (
               <h2 className="dd-section--inner bottom-only">{stock.heading}</h2>
@@ -135,6 +135,9 @@ export async function getStaticProps() {
           instagram
           tiktok
           twitter
+          youtube
+          facebook
+          pinterest
           shareTitle
           shareDescription
         }

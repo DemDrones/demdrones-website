@@ -15,7 +15,7 @@ export function Contact({ headline, email, phone }) {
           marginTop: "4rem",
         }}
       >
-        <li>{email}</li>
+        <li className={style.email}>{email}</li>
         <li>{phone}</li>
       </ul>
     </div>
