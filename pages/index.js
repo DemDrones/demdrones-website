@@ -48,7 +48,7 @@ export default function Home(props) {
           </section>
         ) : null}
 
-        {projects.elementsCollection.items.length ? (
+        {projects.elementsCollection && projects.elementsCollection.items.length ? (
           <div className="dd-container dd-section image-same-height">
             {projects.heading && (
               <h2 className="dd-section--inner bottom-only">
@@ -57,7 +57,7 @@ export default function Home(props) {
             )}
 
             <ul className="unstyled-list dd-grid dd-grid--3col">
-              {projects.elementsCollection.items.map((entry, index) => (
+              {projects.elementsCollection && projects.elementsCollection.items.map((entry, index) => (
                 <li key={index}>
                   <ImageOrVideo asset={entry.thumbnail} />
                   <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
