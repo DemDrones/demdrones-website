@@ -1,11 +1,11 @@
 import LazyLoad from "react-lazyload";
 import * as style from "./style.module.css";
 
-export function IntroVideo() {
+export function IntroVideo({ url }) {
   return (
     <LazyLoad height={576}>
       <video
-        src="/video/movie-c.mp4"
+        src={url}
         muted
         loop
         preload="none"

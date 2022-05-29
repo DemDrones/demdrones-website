@@ -43,7 +43,7 @@ export default function Home(props) {
             <h2>{about.bodyHeading}</h2>
             <div className="dd-grid dd-grid--2col dd-section--inner">
               <div>{documentToReactComponents(about.body.json, richText)}</div>
-              <IntroVideo />
+              {about?.video?.url && <IntroVideo url={about.video.url} />}
             </div>
           </section>
         ) : null}
@@ -154,6 +154,11 @@ export async function getStaticProps() {
           bodyHeading
           body {
             json
+          }
+          video {
+            width
+            height
+            url
           }
           testimonialsCollection {
             items {
