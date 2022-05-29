@@ -9,8 +9,8 @@ export function IntroVideo({ url }) {
       preload="none"
       playsInline={true}
       autoPlay={true}
-      width={1024}
-      height={576}
+      width={640}
+      height={360}
       className={style.video}
     />
   );
