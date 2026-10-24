@@ -5,7 +5,19 @@ import * as style from "./style.module.css";
 export function Hero({ children, global }) {
   return (
     <div className={style.hero}>
-      <div className={style.circle}>DEMDRONES</div>
+      <div className={style.circle} aria-hidden="true">
+        <div
+          style={{
+            width: "clamp(110px, 16vw, 220px)",
+            aspectRatio: "1 / 1",
+            backgroundImage: "url('/DDD.png')",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "750% auto",
+            mixBlendMode: "screen",
+          }}
+        />
+      </div>
 
       <div className={style.canvas}>
         <PdwFiber />
@@ -13,11 +25,16 @@ export function Hero({ children, global }) {
 
       <div className={`dd-section ${style.ui}`}>
         <div className="dd-container">{children}</div>
+
         <div className="dd-container">
           <div className={style.grid}>
             <Socials global={global} />
+
             <div className={style.arrow}>
-              <div style={{ writingMode: "vertical-lr" }}>Scroll down</div>
+              <div style={{ writingMode: "vertical-lr" }}>
+                Scroll down
+              </div>
+
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="24px"
