@@ -17,9 +17,79 @@ export default function Home(props) {
 
   return (
     <div className="container">
-      <Head> <title>{global.title}</title>
-  <link rel="icon" type="image/png" href="/DDD.png"/> 
-    </Head>
+      <Head>
+  <title>{global.shareTitle || global.title}</title>
+
+  <meta
+    name="description"
+    content={
+      global.shareDescription ||
+      global.description ||
+      "DEMDRONES"
+    }
+  />
+
+  <link
+    rel="canonical"
+    href="https://demdrones.co.uk"
+  />
+
+  <link
+    rel="icon"
+    href="/favicon.svg"
+    type="image/svg+xml"
+  />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="DEMDRONES" />
+  <meta property="og:url" content="https://demdrones.co.uk" />
+
+  <meta
+    property="og:title"
+    content={global.shareTitle || global.title}
+  />
+
+  <meta
+    property="og:description"
+    content={
+      global.shareDescription ||
+      global.description ||
+      "DEMDRONES"
+    }
+  />
+
+  <meta
+    property="og:image"
+    content="https://demdrones.co.uk/social.png"
+  />
+
+  <meta property="og:image:width" content="1600" />
+  <meta property="og:image:height" content="900" />
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <meta
+    name="twitter:title"
+    content={global.shareTitle || global.title}
+  />
+
+  <meta
+    name="twitter:description"
+    content={
+      global.shareDescription ||
+      global.description ||
+      "DEMDRONES"
+    }
+  />
+
+  <meta
+    name="twitter:image"
+    content="https://demdrones.co.uk/social.png"
+  />
+</Head>
 
       <main>
         <Hero global={global}>
