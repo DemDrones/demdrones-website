@@ -23,7 +23,12 @@ export default function Home(props) {
 
       <main>
         <Hero global={global}>
-          <h1>{global.title}</h1>
+          <h1
+  data-sb-object-id={global.sys.id}
+  data-sb-field-path="title"
+>
+  {global.title}
+</h1>
         </Hero>
 
         {about?.servicesCollection?.items?.length ? (
@@ -39,10 +44,17 @@ export default function Home(props) {
         ) : null}
 
         {about?.body?.json ? (
-          <section className={`dd-container dd-section`}>
-            <h2>{about.bodyHeading}</h2>
+          <section
+  className="dd-container dd-section"
+  data-sb-object-id={about.sys.id}
+>
+            <h2 data-sb-field-path="bodyHeading">
+  {about.bodyHeading}
+</h2>
             <div className="dd-grid dd-grid--2col dd-section--inner">
-              <div>{documentToReactComponents(about.body.json, richText)}</div>
+              <div data-sb-field-path="body">
+  {documentToReactComponents(about.body.json, richText)}
+</div>
               {about?.video?.url && <IntroVideo url={about.video.url} />}
             </div>
           </section>
@@ -128,11 +140,14 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const query = `
-      {
-        global(id: "7v6WFxhvgwzdZeH8OzIojA") {
-          title
-          description
-          instagram
+  
+  global(id: "7v6WFxhvgwzdZeH8OzIojA") {
+  sys {
+    id
+  }
+  title
+  description
+  instagram
           tiktok
           twitter
           youtube
@@ -142,8 +157,12 @@ export async function getStaticProps() {
           shareDescription
         }
         about(id: "3Ood3dTWFnQzPkBTJOiy3K") {
-          servicesBlurb {
-            json
+  sys {
+    id
+  }
+  servicesBlurb {
+    json
+  }
           }
           servicesCollection {
             items {
