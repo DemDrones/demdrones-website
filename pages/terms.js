@@ -1,5 +1,4 @@
 import { Footer } from "@components/footer";
-import { Hero } from "@components/hero";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
 import Link from "next/link";
@@ -12,39 +11,37 @@ export default function Terms(props) {
   return (
     <div className="container">
       <Head>
-        <meta name="color-scheme" content="dark" />
-        <meta name="applicable-device" content="pc,mobile" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="application-name" content="DemDrones" />
+        <title>Terms & Privacy | {global.title}</title>
+
         <meta
-          name="apple-mobile-web-app-status-bar-style"
-          content="black-translucent"
+          name="description"
+          content={`Terms and privacy information for ${global.title}.`}
         />
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="true"
+          rel="canonical"
+          href="https://demdrones.co.uk/terms"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Six+Caps&display=swap"
-          rel="stylesheet"
-        />
-
-        <title>{global.title}</title>
       </Head>
 
       <main>
         <div className="dd-section dd-container">
           <h1>
             <Link href="/">
-              <a>Demdrones</a>
+              <a>DEMDRONES</a>
             </Link>
-            //TERMS
+            {" // TERMS & PRIVACY"}
           </h1>
-          {documentToReactComponents(global.policy.json, richText)}
-          {documentToReactComponents(global.terms.json, richText)}
+
+          {documentToReactComponents(
+            global.policy.json,
+            richText
+          )}
+
+          {documentToReactComponents(
+            global.terms.json,
+            richText
+          )}
         </div>
       </main>
 
@@ -55,22 +52,31 @@ export default function Terms(props) {
 
 export async function getStaticProps() {
   const query = `
-      {
-        global(id: "7v6WFxhvgwzdZeH8OzIojA") {
-          title
-          description
-          instagram
-          tiktok
-          twitter
-          policy {
-            json
-          }
-          terms {
-            json
-          }
+    {
+      global(id: "7v6WFxhvgwzdZeH8OzIojA") {
+        title
+        description
+        instagram
+        tiktok
+        twitter
+        youtube
+        facebook
+        pinterest
+
+        policy {
+          json
+        }
+
+        terms {
+          json
         }
       }
-    `;
+    }
+  `;
+
   const data = await ContentfulApi.getData(query);
-  return { props: data.data };
+
+  return {
+    props: data.data,
+  };
 }
