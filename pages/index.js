@@ -17,9 +17,9 @@ export default function Home(props) {
 
   return (
     <div className="container">
-      <Head>
-        <title>{global.title}</title>
-      </Head>
+      <Head> <title>{global.title}</title>
+  <link rel="icon" type="image/png" href="/DDD.png"/> 
+    </Head>
 
       <main>
         <Hero global={global}>
