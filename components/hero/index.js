@@ -6,18 +6,17 @@ export function Hero({ children, global }) {
   return (
     <div className={style.hero}>
       <div className={style.circle} aria-hidden="true">
-        <div
-          style={{
-            width: "clamp(110px, 16vw, 220px)",
-            aspectRatio: "1 / 1",
-            backgroundImage: "url('/DDD.png')",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "750% auto",
-            mixBlendMode: "screen",
-          }}
-        />
-      </div>
+  <img
+    src="/DDD-logo-transparent.png"
+    alt=""
+    style={{
+      width: "clamp(140px, 20vw, 280px)",
+      height: "auto",
+      objectFit: "contain",
+      display: "block",
+    }}
+  />
+</div>
 
       <div className={style.canvas}>
         <PdwFiber />
