@@ -1,10 +1,7 @@
 import { CardBoxList } from "@components/card-box-list";
 import { Contact } from "@components/contact";
-import { Footer } from "@components/footer";
-import { Hero } from "@components/hero";
-import { ImageOrVideo } from "@components/image-or-video";
-import { IntroVideo } from "@components/intro-video";
-import { StockList } from "@components/stock-list";
+export function ImageOrVideo({ asset }) { if (!asset?.url) {return null;}
+ if (asset.contentType?.includes("video")) {
 import { Testimonials } from "@components/testimonial/testimonials";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
@@ -57,13 +54,15 @@ export default function Home(props) {
 </div>
               {about?.video?.url && <IntroVideo url={about.video.url} />}
             </div>
-          </section>
-        ) : null}
-
-        {projects?.elementsCollection?.items?.length ? (
-          <div className="dd-container dd-section image-same-height">
-            {projects.heading && (
-              <h2 className="dd-section--inner bottom-only">
+          {projects.elementsCollection.items
+  .filter(Boolean)
+  .map((entry, index) => (
+    <li key={index}>
+      {entry.thumbnail ? <ImageOrVideo asset={entry.thumbnail} /> : null}
+      <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
+      <p style={{ marginTop: "0rem" }}>{entry.description}</p>
+    </li>
+  ))}
                 {projects.heading}
               </h2>
             )}
