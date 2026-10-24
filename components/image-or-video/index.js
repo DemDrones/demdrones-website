@@ -1,6 +1,12 @@
 import Image from "next/image";
 
 export function ImageOrVideo({ asset }) {
+  const assetUrl = asset?.url?.startsWith("//")
+    ? `https:${asset.url}`
+    : asset?.url;
+
+  if (!assetUrl) return null;
+
   if (asset.contentType?.includes("video")) {
     return (
       <video
@@ -8,7 +14,7 @@ export function ImageOrVideo({ asset }) {
         loop
         muted
         playsInline
-        src={asset.url}
+        src={assetUrl}
         width={16}
         height={9}
       />
@@ -16,11 +22,12 @@ export function ImageOrVideo({ asset }) {
   } else {
     return (
       <Image
-        src={asset.url}
+        src={assetUrl}
         width={asset.width || 16}
         height={asset.height || 9}
-        alt=""
+        alt={asset.description || asset.title || ""}
         loading="lazy"
+        unoptimized
       />
     );
   }
