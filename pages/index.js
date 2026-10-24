@@ -1,7 +1,10 @@
 import { CardBoxList } from "@components/card-box-list";
 import { Contact } from "@components/contact";
-export function ImageOrVideo({ asset }) { if (!asset?.url) {return null;}
- if (asset.contentType?.includes("video")) {
+import { Footer } from "@components/footer";
+import { Hero } from "@components/hero";
+import { ImageOrVideo } from "@components/image-or-video";
+import { IntroVideo } from "@components/intro-video";
+import { StockList } from "@components/stock-list";
 import { Testimonials } from "@components/testimonial/testimonials";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
@@ -20,12 +23,7 @@ export default function Home(props) {
 
       <main>
         <Hero global={global}>
-          <h1
-  data-sb-object-id={global.sys.id}
-  data-sb-field-path="title"
->
-  {global.title}
-</h1>
+          <h1>{global.title}</h1>
         </Hero>
 
         {about?.servicesCollection?.items?.length ? (
@@ -41,28 +39,19 @@ export default function Home(props) {
         ) : null}
 
         {about?.body?.json ? (
-          <section
-  className="dd-container dd-section"
-  data-sb-object-id={about.sys.id}
->
-            <h2 data-sb-field-path="bodyHeading">
-  {about.bodyHeading}
-</h2>
+          <section className={`dd-container dd-section`}>
+            <h2>{about.bodyHeading}</h2>
             <div className="dd-grid dd-grid--2col dd-section--inner">
-              <div data-sb-field-path="body">
-  {documentToReactComponents(about.body.json, richText)}
-</div>
+              <div>{documentToReactComponents(about.body.json, richText)}</div>
               {about?.video?.url && <IntroVideo url={about.video.url} />}
             </div>
-          {projects.elementsCollection.items
-  .filter(Boolean)
-  .map((entry, index) => (
-    <li key={index}>
-      {entry.thumbnail ? <ImageOrVideo asset={entry.thumbnail} /> : null}
-      <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
-      <p style={{ marginTop: "0rem" }}>{entry.description}</p>
-    </li>
-  ))}
+          </section>
+        ) : null}
+
+        {projects?.elementsCollection?.items?.length ? (
+          <div className="dd-container dd-section image-same-height">
+            {projects.heading && (
+              <h2 className="dd-section--inner bottom-only">
                 {projects.heading}
               </h2>
             )}
@@ -139,14 +128,11 @@ export default function Home(props) {
 
 export async function getStaticProps() {
   const query = `
-  
-  global(id: "7v6WFxhvgwzdZeH8OzIojA") {
-  sys {
-    id
-  }
-  title
-  description
-  instagram
+      {
+        global(id: "7v6WFxhvgwzdZeH8OzIojA") {
+          title
+          description
+          instagram
           tiktok
           twitter
           youtube
@@ -156,12 +142,8 @@ export async function getStaticProps() {
           shareDescription
         }
         about(id: "3Ood3dTWFnQzPkBTJOiy3K") {
-  sys {
-    id
-  }
-  servicesBlurb {
-    json
-  }
+          servicesBlurb {
+            json
           }
           servicesCollection {
             items {
