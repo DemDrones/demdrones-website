@@ -16,6 +16,14 @@ export default defineStackbitConfig({
     })
   ],
 
+  modelExtensions: [
+    {
+      name: 'global',
+      type: 'page',
+      urlPath: '/'
+    }
+  ],
+
   postInstallCommand:
     'npm i --no-save @stackbit/types @stackbit/cms-contentful'
 });
