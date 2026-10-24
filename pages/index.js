@@ -57,13 +57,15 @@ export default function Home(props) {
             )}
 
             <ul className="unstyled-list dd-grid dd-grid--3col">
-              {projects.elementsCollection.items.map((entry, index) => (
-                <li key={index}>
-                  <ImageOrVideo asset={entry.thumbnail} />
-                  <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
-                  <p style={{ marginTop: "0rem" }}>{entry.description}</p>
-                </li>
-              ))}
+            {projects.elementsCollection.items
+  .filter(Boolean)
+  .map((entry, index) => (
+    <li key={index}>
+      {entry.thumbnail ? <ImageOrVideo asset={entry.thumbnail} /> : null}
+      <h3 style={{ marginTop: "1rem" }}>{entry.title}</h3>
+      <p style={{ marginTop: "0rem" }}>{entry.description}</p>
+    </li>
+  ))}
             </ul>
           </div>
         ) : null}
