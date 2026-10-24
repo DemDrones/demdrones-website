@@ -17,7 +17,7 @@ export function CardBoxList({ className, entries }) {
         spaceBetween={16}
         modules={[Pagination, Navigation]}
         slidesPerView="auto"
-      >{(entries || []).filter(Boolean).map((entry, index) => ( (
+      >{(entries || []).filter(Boolean).map((entry, index) => ( 
           <SwiperSlide className={styles.slide} key={index}>
             <CardBox>
               {entry.heading && <h3>{entry.heading}</h3>}
