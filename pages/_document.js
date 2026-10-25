@@ -35,17 +35,24 @@ export default function Document() {
 
         <link
   rel="icon"
-  href="/demdrones-tab-icon.svg"
+  href="/demdrones-tab-icon.svg?v=2"
   type="image/svg+xml"
   sizes="any"
 />
 
 <link
   rel="shortcut icon"
-  href="/demdrones-tab-icon.svg"
+  href="/demdrones-tab-icon.svg?v=2"
   type="image/svg+xml"
 />
 
+    <link
+
+  rel="apple-touch-icon"
+
+  href="/DDD.png"
+
+/>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
