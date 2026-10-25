@@ -26,12 +26,27 @@ export class ContentfulApi {
     };
 
     try {
-      const data = await fetch(fetchUrl, fetchOptions).then((response) =>
-        response.json()
-      );
-      return data;
-    } catch (error) {
-      throw new Error("Could not fetch data from Contentful!");
-    }
+  const data = await fetch(fetchUrl, fetchOptions).then((response) =>
+    response.json()
+  );
+
+  if (data.errors?.length) {
+    console.error(
+      "CONTENTFUL GRAPHQL ERROR:",
+      JSON.stringify(data.errors, null, 2)
+    );
+
+    throw new Error(
+      `Contentful GraphQL failed: ${data.errors
+        .map((error) => error.message)
+        .join(" | ")}`
+    );
+  }
+
+  return data;
+} catch (error) {
+  console.error("CONTENTFUL FETCH ERROR:", error);
+  throw error;
+}
   }
 }
