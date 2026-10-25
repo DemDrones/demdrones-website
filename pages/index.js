@@ -181,25 +181,34 @@ export default function Home(props) {
                 )}
               </div>
 
-              {youtubeEmbedUrl ? (
-                <iframe
-                  src={youtubeEmbedUrl}
-                  title="DEMDRONES YouTube video"
-                  width="640"
-                  height="360"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  style={{
-                    width: "100%",
-                    aspectRatio: "16 / 9",
-                    height: "auto",
-                    border: 0,
-                  }}
-                />
-              ) : about?.video?.url ? (
-                <IntroVideo url={about.video.url} />
-              ) : null}
+             <div
+  style={{
+    display: "grid",
+    gap: "1rem",
+  }}
+>
+  {about?.video?.url ? (
+    <IntroVideo url={about.video.url} />
+  ) : null}
+
+  {youtubeEmbedUrl ? (
+    <iframe
+      src={youtubeEmbedUrl}
+      title="DEMDRONES YouTube video"
+      width="640"
+      height="360"
+      loading="lazy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+      style={{
+        width: "100%",
+        aspectRatio: "16 / 9",
+        height: "auto",
+        border: 0,
+      }}
+    />
+  ) : null}
+</div>
             </div>
           </section>
         ) : null}
