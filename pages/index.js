@@ -268,98 +268,155 @@ export default function Home(props) {
     </div>
 
     <ul className="unstyled-list dd-grid dd-grid--3col">
-      {events.items.filter(Boolean).map((event) => (
-        <li key={event.sys.id}>
-          {event.image ? (
-            <div className="image-same-height">
-              <ImageOrVideo asset={event.image} />
+      {events.items.filter(Boolean).map((event) => {
+        const ticketOptions =
+          event.ticketOptionsCollection?.items?.filter(
+            (ticket) => ticket && ticket.available !== false
+          ) || [];
+
+        const bookingLinks =
+          event.bookingLinksCollection?.items?.filter(
+            (link) => link && link.available !== false
+          ) || [];
+
+        return (
+          <li key={event.sys.id}>
+            {event.image ? (
+              <div className="image-same-height">
+                <ImageOrVideo asset={event.image} />
+              </div>
+            ) : null}
+
+            <div style={{ marginTop: "1.25rem" }}>
+              {event.eventType ? (
+                <p
+                  style={{
+                    textTransform: "uppercase",
+                    letterSpacing: ".1em",
+                    fontSize: ".85rem",
+                    marginBottom: ".5rem",
+                  }}
+                >
+                  {event.eventType}
+                </p>
+              ) : null}
+
+              <h3>{event.title}</h3>
+
+              {event.startDate ? (
+                <p>
+                  {new Date(event.startDate).toLocaleDateString(
+                    "en-GB",
+                    {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                      timeZone: "Europe/London",
+                    }
+                  )}
+                </p>
+              ) : null}
+
+              {event.location ? (
+                <p>{event.location}</p>
+              ) : null}
+
+              {event.description ? (
+                <p style={{ marginTop: "1rem" }}>
+                  {event.description}
+                </p>
+              ) : null}
+
+              {ticketOptions.length ? (
+                <div style={{ marginTop: "1.5rem" }}>
+                  <p
+                    style={{
+                      textTransform: "uppercase",
+                      letterSpacing: ".08em",
+                      fontWeight: "700",
+                    }}
+                  >
+                    Ticket options
+                  </p>
+
+                  {ticketOptions.map((ticket) => (
+                    <div
+                      key={ticket.sys.id}
+                      style={{
+                        marginTop: "1rem",
+                        paddingTop: "1rem",
+                        borderTop:
+                          "1px solid rgba(255,255,255,.17)",
+                      }}
+                    >
+                      <strong>{ticket.name}</strong>
+
+                      {ticket.price != null ? (
+                        <p
+                          style={{
+                            fontSize: "1.25rem",
+                            fontWeight: "700",
+                            margin: ".35rem 0",
+                          }}
+                        >
+                          £{Number(ticket.price).toFixed(2)}
+                        </p>
+                      ) : null}
+
+                      {ticket.description ? (
+                        <p>{ticket.description}</p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+
+              {event.status ? (
+                <p
+                  style={{
+                    textTransform: "uppercase",
+                    letterSpacing: ".08em",
+                    marginTop: "1.5rem",
+                  }}
+                >
+                  {event.status}
+                </p>
+              ) : null}
+
+              {event.status === "Tickets Live" &&
+              bookingLinks.length ? (
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: ".75rem",
+                    marginTop: "1rem",
+                  }}
+                >
+                  {bookingLinks.map((link) => (
+                    <a
+                      key={link.sys.id}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "inline-block",
+                        padding: "1rem 1.4rem",
+                        background: "white",
+                        color: "black",
+                        textDecoration: "none",
+                        fontWeight: "700",
+                      }}
+                    >
+                      BUY ON {link.name.toUpperCase()} →
+                    </a>
+                  ))}
+                </div>
+              ) : null}
             </div>
-          ) : null}
-
-          <div style={{ marginTop: "1.25rem" }}>
-            {event.eventType ? (
-              <p
-                style={{
-                  textTransform: "uppercase",
-                  letterSpacing: ".1em",
-                  fontSize: ".85rem",
-                  marginBottom: ".5rem",
-                }}
-              >
-                {event.eventType}
-              </p>
-            ) : null}
-
-            <h3>{event.title}</h3>
-
-            {event.startDate ? (
-              <p>
-                {new Date(event.startDate).toLocaleDateString(
-                  "en-GB",
-                  {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                    timeZone: "Europe/London",
-                  }
-                )}
-              </p>
-            ) : null}
-
-            {event.location ? (
-              <p>{event.location}</p>
-            ) : null}
-
-            {event.description ? (
-              <p style={{ marginTop: "1rem" }}>
-                {event.description}
-              </p>
-            ) : null}
-
-            {event.price != null ? (
-              <p
-                style={{
-                  fontSize: "1.35rem",
-                  fontWeight: "700",
-                  marginTop: "1rem",
-                }}
-              >
-                £{Number(event.price).toFixed(2)}
-              </p>
-            ) : null}
-
-            {event.status ? (
-              <p
-                style={{
-                  textTransform: "uppercase",
-                  letterSpacing: ".08em",
-                  marginTop: "1rem",
-                }}
-              >
-                {event.status}
-              </p>
-            ) : null}
-
-            {event.status === "Tickets Live" &&
-            event.ticketUrl ? (
-              <a
-                href={event.ticketUrl}
-                style={{
-                  display: "inline-block",
-                  marginTop: "1rem",
-                  padding: "1rem 1.4rem",
-                  background: "white",
-                  color: "black",
-                  textDecoration: "none",
-                  fontWeight: "700",
-                }}
-              >
-                BUY TICKETS →
-              </a>
-            ) : null}
-          </div>
-        </li>
-      ))}
+          </li>
+        );
+      })}
     </ul>
   </section>
 ) : null}
@@ -747,8 +804,6 @@ events: eventCollection(
     startDate
     endDate
     location
-    price
-    ticketUrl
     status
     waitlistEnabled
     saveTheDateEnabled
@@ -782,6 +837,37 @@ events: eventCollection(
         url
         width
         height
+      }
+    }
+
+    ticketOptionsCollection(
+      order: sortOrder_ASC
+      limit: 10
+    ) {
+      items {
+        sys {
+          id
+        }
+        name
+        price
+        description
+        available
+        sortOrder
+      }
+    }
+
+    bookingLinksCollection(
+      order: sortOrder_ASC
+      limit: 10
+    ) {
+      items {
+        sys {
+          id
+        }
+        name
+        url
+        available
+        sortOrder
       }
     }
   }
