@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-    <style>
-        @media (prefers-color-scheme: dark) { path { fill: #fff; } }
-    </style>
-    <path fill="#000" d="M4 6h10v2h-4v4h12V8h-4V6h10v2h-4v4h2v2h-6v2h6v10h-2v-8H8v8H6V16h6v-2H6v-2h2V8H4V6Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#000"/>
+  <path
+    fill="#fff"
+    fill-rule="evenodd"
+    d="M 162 94 L 162 463 L 163 464 L 350 464 L 351 463 L 361 463 L 369 461 L 386 454 L 396 447 L 409 434 L 414 427 L 422 410 L 425 398 L 425 160 L 421 145 L 414 131 L 408 123 L 396 111 L 384 103 L 373 98 L 365 96 L 360 96 L 359 95 L 354 95 L 353 94 Z M 358 148 L 370 159 L 373 165 L 373 169 L 374 170 L 374 388 L 373 389 L 373 393 L 370 399 L 363 407 L 352 412 L 215 412 L 214 411 L 214 381 L 216 379 L 217 380 L 313 380 L 326 376 L 335 366 L 338 354 L 338 147 L 339 146 L 351 146 Z M 215 146 L 295 146 L 296 147 L 296 344 L 291 354 L 287 358 L 279 363 L 275 364 L 215 364 L 214 363 L 214 147 Z M 300 52 L 276 46 L 85 46 L 85 416 L 125 416 L 126 414 L 125 412 L 126 411 L 126 65 L 125 64 L 127 62 L 316 62 L 316 61 Z"
+  />
 </svg>
