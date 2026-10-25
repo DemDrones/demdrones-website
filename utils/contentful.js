@@ -36,12 +36,13 @@ export class ContentfulApi {
       JSON.stringify(data.errors, null, 2)
     );
 
-    throw new Error(
-      `Contentful GraphQL failed: ${data.errors
-        .map((error) => error.message)
-        .join(" | ")}`
-    );
-  }
+    if (!data.data) {
+  throw new Error(
+    `Contentful GraphQL failed: ${data.errors
+      .map((error) => error.message)
+      .join(" | ")}`
+  );
+}
 
   return data;
 } catch (error) {
