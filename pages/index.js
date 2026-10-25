@@ -879,6 +879,8 @@ events: eventCollection(
     }
   }
 }
+  }
+}
       footerCollection {
         items {
           headline
