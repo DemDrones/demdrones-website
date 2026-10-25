@@ -866,17 +866,16 @@ events: eventCollection(
 
     bookingLinksCollection: bookingLinkCollection(
   limit: 100
-
-    ) {
-      items {
-        sys {
-          id
-        }
-        name
-        url
-        available
-        sortOrder
+) {
+  items {
+    ... on Bookinglink {
+      sys {
+        id
       }
+      name
+      url
+      available
+      sortOrder
     }
   }
 }
