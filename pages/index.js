@@ -269,15 +269,23 @@ export default function Home(props) {
 
     <ul className="unstyled-list dd-grid dd-grid--3col">
       {events.items.filter(Boolean).map((event) => {
-        const ticketOptions =
-          event.ticketOptionsCollection?.items?.filter(
-            (ticket) => ticket && ticket.available !== false
-          ) || [];
+        const ticketOptions = (
+  event.ticketOptionsCollection?.items?.filter(
+    (ticket) => ticket && ticket.available !== false
+  ) || []
+).sort(
+  (a, b) =>
+    (a.sortOrder ?? 999) - (b.sortOrder ?? 999)
+);
 
-        const bookingLinks =
-          event.bookingLinksCollection?.items?.filter(
-            (link) => link && link.available !== false
-          ) || [];
+const bookingLinks = (
+  event.bookingLinksCollection?.items?.filter(
+    (link) => link && link.available !== false
+  ) || []
+).sort(
+  (a, b) =>
+    (a.sortOrder ?? 999) - (b.sortOrder ?? 999)
+);
 
         return (
           <li key={event.sys.id}>
@@ -841,8 +849,8 @@ events: eventCollection(
     }
 
     ticketOptionsCollection(
-      order: sortOrder_ASC
-      limit: 10
+  limit: 100
+) {
     ) {
       items {
         sys {
@@ -857,8 +865,8 @@ events: eventCollection(
     }
 
     bookingLinksCollection(
-      order: sortOrder_ASC
-      limit: 10
+  limit: 100
+) {
     ) {
       items {
         sys {
