@@ -59,7 +59,7 @@ function getYouTubeEmbedUrl(url) {
 }
 
 export default function Home(props) {
-  const { global, about, projects, stock } = props;
+  const { global, about, projects, stock, events } = props;
   const footers = props.footerCollection.items;
 
   const youtubeEmbedUrl = getYouTubeEmbedUrl(
@@ -251,7 +251,118 @@ export default function Home(props) {
             </ul>
           </div>
         ) : null}
+{events?.items?.length ? (
+  <section className="dd-container dd-section">
+    <div className="dd-section--inner bottom-only">
+      <p
+        style={{
+          textTransform: "uppercase",
+          letterSpacing: ".12em",
+          marginBottom: ".75rem",
+        }}
+      >
+        DEMDRONES EVENTS
+      </p>
 
+      <h2>Experiences & Events</h2>
+    </div>
+
+    <ul className="unstyled-list dd-grid dd-grid--3col">
+      {events.items.filter(Boolean).map((event) => (
+        <li key={event.sys.id}>
+          {event.image ? (
+            <div className="image-same-height">
+              <ImageOrVideo asset={event.image} />
+            </div>
+          ) : null}
+
+          <div style={{ marginTop: "1.25rem" }}>
+            {event.eventType ? (
+              <p
+                style={{
+                  textTransform: "uppercase",
+                  letterSpacing: ".1em",
+                  fontSize: ".85rem",
+                  marginBottom: ".5rem",
+                }}
+              >
+                {event.eventType}
+              </p>
+            ) : null}
+
+            <h3>{event.title}</h3>
+
+            {event.startDate ? (
+              <p>
+                {new Date(event.startDate).toLocaleDateString(
+                  "en-GB",
+                  {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                    timeZone: "Europe/London",
+                  }
+                )}
+              </p>
+            ) : null}
+
+            {event.location ? (
+              <p>{event.location}</p>
+            ) : null}
+
+            {event.description ? (
+              <p style={{ marginTop: "1rem" }}>
+                {event.description}
+              </p>
+            ) : null}
+
+            {event.price != null ? (
+              <p
+                style={{
+                  fontSize: "1.35rem",
+                  fontWeight: "700",
+                  marginTop: "1rem",
+                }}
+              >
+                £{Number(event.price).toFixed(2)}
+              </p>
+            ) : null}
+
+            {event.status ? (
+              <p
+                style={{
+                  textTransform: "uppercase",
+                  letterSpacing: ".08em",
+                  marginTop: "1rem",
+                }}
+              >
+                {event.status}
+              </p>
+            ) : null}
+
+            {event.status === "Tickets Live" &&
+            event.ticketUrl ? (
+              <a
+                href={event.ticketUrl}
+                style={{
+                  display: "inline-block",
+                  marginTop: "1rem",
+                  padding: "1rem 1.4rem",
+                  background: "white",
+                  color: "black",
+                  textDecoration: "none",
+                  fontWeight: "700",
+                }}
+              >
+                BUY TICKETS →
+              </a>
+            ) : null}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+) : null}
         {about.safetyIntroduction?.json ? (
           <section className="dd-container dd-section theme--with-background theme--dark">
             {about.safetyHeading && (
@@ -621,7 +732,60 @@ export async function getStaticProps() {
           }
         }
       }
+events: eventCollection(
+  order: sortOrder_ASC
+  limit: 12
+) {
+  items {
+    sys {
+      id
+    }
 
+    title
+    eventType
+    description
+    startDate
+    endDate
+    location
+    price
+    ticketUrl
+    status
+    waitlistEnabled
+    saveTheDateEnabled
+    featured
+    sortOrder
+    youtubeUrl
+
+    image {
+      title
+      description
+      contentType
+      url
+      width
+      height
+    }
+
+    video {
+      title
+      description
+      contentType
+      url
+      width
+      height
+    }
+
+    galleryCollection {
+      items {
+        title
+        description
+        contentType
+        url
+        width
+        height
+      }
+    }
+  }
+}
       footerCollection {
         items {
           headline
