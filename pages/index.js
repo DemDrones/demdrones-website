@@ -807,7 +807,7 @@ events: eventCollection(
     }
 
     title
-    eventType
+    eventType: evenType
     description
     startDate
     endDate
@@ -864,7 +864,7 @@ events: eventCollection(
       }
     }
 
-    bookingLinksCollection(
+    bookingLinksCollection: bookingLinkCollection(
   limit: 100
 
     ) {
