@@ -85,11 +85,11 @@ export default function Home(props) {
           href="https://demdrones.co.uk"
         />
 
-        <link
-          rel="icon"
-          href="/favicon.svg"
-          type="image/svg+xml"
-        />
+      <link
+  rel="icon"
+  href="/favicon.svg?v=2"
+  type="image/svg+xml"
+/>
 
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="DEMDRONES" />
@@ -308,7 +308,170 @@ export default function Home(props) {
             </div>
           </section>
         ) : null}
+<section
+  className="dd-container dd-section"
+  style={{
+    borderTop: "1px solid rgba(255,255,255,.17)",
+    borderBottom: "1px solid rgba(255,255,255,.17)",
+  }}
+>
+  <div style={{ maxWidth: "900px" }}>
+    <p
+      style={{
+        textTransform: "uppercase",
+        letterSpacing: ".12em",
+        marginBottom: "1rem",
+      }}
+    >
+      DEMDRONES
+    </p>
 
+    <h2 style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)", margin: 0 }}>
+      Stay in the loop.
+    </h2>
+
+    <p
+      style={{
+        fontSize: "1.25rem",
+        maxWidth: "55ch",
+        marginTop: "1.5rem",
+        marginBottom: "3rem",
+      }}
+    >
+      Get early access to DDF experiences, ticket releases,
+      merchandise drops, events, and DEMDRONES opportunities.
+    </p>
+
+    <form
+      name="demdrones-mailing-list"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      style={{
+        display: "grid",
+        gap: "1.25rem",
+        maxWidth: "700px",
+      }}
+    >
+      <input
+        type="hidden"
+        name="form-name"
+        value="demdrones-mailing-list"
+      />
+
+      <input
+        type="hidden"
+        name="source"
+        value="DEMDRONES homepage"
+      />
+
+      <p hidden>
+        <label>
+          Do not fill this out:
+          <input name="bot-field" />
+        </label>
+      </p>
+
+      <label>
+        Name
+        <input
+          type="text"
+          name="name"
+          required
+          style={{
+            display: "block",
+            width: "100%",
+            marginTop: ".5rem",
+            padding: "1rem",
+            background: "transparent",
+            color: "white",
+            border: "1px solid rgba(255,255,255,.5)",
+            fontSize: "1rem",
+          }}
+        />
+      </label>
+
+      <label>
+        Email
+        <input
+          type="email"
+          name="email"
+          required
+          style={{
+            display: "block",
+            width: "100%",
+            marginTop: ".5rem",
+            padding: "1rem",
+            background: "transparent",
+            color: "white",
+            border: "1px solid rgba(255,255,255,.5)",
+            fontSize: "1rem",
+          }}
+        />
+      </label>
+
+      <label>
+        Phone number
+        <input
+          type="tel"
+          name="phone"
+          style={{
+            display: "block",
+            width: "100%",
+            marginTop: ".5rem",
+            padding: "1rem",
+            background: "transparent",
+            color: "white",
+            border: "1px solid rgba(255,255,255,.5)",
+            fontSize: "1rem",
+          }}
+        />
+      </label>
+
+      <label style={{ display: "flex", gap: ".75rem", alignItems: "flex-start" }}>
+        <input
+          type="checkbox"
+          name="email-consent"
+          value="yes"
+          required
+          style={{ marginTop: ".3rem" }}
+        />
+        <span>
+          I want to receive DEMDRONES news, ticket releases,
+          experiences, merchandise drops, and opportunities by email.
+        </span>
+      </label>
+
+      <label style={{ display: "flex", gap: ".75rem", alignItems: "flex-start" }}>
+        <input
+          type="checkbox"
+          name="sms-consent"
+          value="yes"
+          style={{ marginTop: ".3rem" }}
+        />
+        <span>
+          I would also like DEMDRONES updates by text message.
+        </span>
+      </label>
+
+      <button
+        type="submit"
+        style={{
+          padding: "1.1rem 1.5rem",
+          background: "white",
+          color: "black",
+          border: "1px solid white",
+          fontSize: "1rem",
+          fontWeight: "700",
+          cursor: "pointer",
+          width: "fit-content",
+        }}
+      >
+        JOIN DEMDRONES →
+      </button>
+    </form>
+  </div>
+</section>
         {footers.map((f, i) => (
           <Contact
             headline={f.headline}
