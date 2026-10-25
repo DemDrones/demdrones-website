@@ -12,28 +12,30 @@ import Head from "next/head";
 import { ContentfulApi } from "../utils/contentful";
 import { richText } from "../utils/rich-text";
 
-function getRichTextOptions(field) {
-  const embeddedAssets = field?.links?.assets?.block || [];
+function getYouTubeEmbedUrl(url) {
+  if (!url) return null;
 
-  return {
-    ...richText,
-    renderNode: {
-      ...richText.renderNode,
+  try {
+    const parsedUrl = new URL(url);
+    let videoId = null;
 
-      [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const assetId = node?.data?.target?.sys?.id;
+    if (parsedUrl.hostname.includes("youtu.be")) {
+      videoId = parsedUrl.pathname.slice(1);
+    } else if (parsedUrl.pathname.startsWith("/shorts/")) {
+      videoId = parsedUrl.pathname.split("/")[2];
+    } else if (parsedUrl.pathname.startsWith("/embed/")) {
+      videoId = parsedUrl.pathname.split("/")[2];
+    } else {
+      videoId = parsedUrl.searchParams.get("v");
+    }
 
-        const asset = embeddedAssets.find(
-          (item) => item?.sys?.id === assetId
-        );
-
-        return asset ? <ImageOrVideo asset={asset} /> : null;
-      },
-    },
-  };
+    return videoId
+      ? `https://www.youtube-nocookie.com/embed/${videoId}`
+      : null;
+  } catch {
+    return null;
+  }
 }
-
-export default function Home(props) {
   const { global, about, projects, stock } = props;
   const footers = props.footerCollection.items;
 
@@ -159,9 +161,25 @@ export default function Home(props) {
                 )}
               </div>
 
-              {about?.video?.url && (
-                <IntroVideo url={about.video.url} />
-              )}
+            {about?.youtubeUrl ? (
+  <iframe
+    src={getYouTubeEmbedUrl(about.youtubeUrl)}
+    title="DEMDRONES YouTube video"
+    width="640"
+    height="360"
+    loading="lazy"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowFullScreen
+    style={{
+      width: "100%",
+      aspectRatio: "16 / 9",
+      height: "auto",
+      border: 0,
+    }}
+  />
+) : about?.video?.url ? (
+  <IntroVideo url={about.video.url} />
+) : null}
             </div>
           </section>
         ) : null}
