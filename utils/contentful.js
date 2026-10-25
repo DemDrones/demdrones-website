@@ -43,7 +43,7 @@ export class ContentfulApi {
       .join(" | ")}`
   );
 }
-
+  }
   return data;
 } catch (error) {
   console.error("CONTENTFUL FETCH ERROR:", error);
