@@ -850,7 +850,7 @@ events: eventCollection(
 
     ticketOptionsCollection(
   limit: 100
-) {
+
     ) {
       items {
         sys {
@@ -866,7 +866,7 @@ events: eventCollection(
 
     bookingLinksCollection(
   limit: 100
-) {
+
     ) {
       items {
         sys {
