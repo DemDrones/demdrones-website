@@ -87,7 +87,14 @@ export default function Home(props) {
 
       <link
   rel="icon"
-  href="/favicon.svg?v=2"
+  href="/demdrones-tab-icon.svg"
+  type="image/svg+xml"
+  sizes="any"
+/>
+
+<link
+  rel="shortcut icon"
+  href="/demdrones-tab-icon.svg"
   type="image/svg+xml"
 />
 
