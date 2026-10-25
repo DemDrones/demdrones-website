@@ -12,6 +12,27 @@ import Head from "next/head";
 import { ContentfulApi } from "../utils/contentful";
 import { richText } from "../utils/rich-text";
 
+function getRichTextOptions(field) {
+  const embeddedAssets = field?.links?.assets?.block || [];
+
+  return {
+    ...richText,
+    renderNode: {
+      ...richText.renderNode,
+
+      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+        const assetId = node?.data?.target?.sys?.id;
+
+        const asset = embeddedAssets.find(
+          (item) => item?.sys?.id === assetId
+        );
+
+        return asset ? <ImageOrVideo asset={asset} /> : null;
+      },
+    },
+  };
+}
+
 function getYouTubeEmbedUrl(url) {
   if (!url) return null;
 
@@ -36,8 +57,14 @@ function getYouTubeEmbedUrl(url) {
     return null;
   }
 }
+
+export default function Home(props) {
   const { global, about, projects, stock } = props;
   const footers = props.footerCollection.items;
+
+  const youtubeEmbedUrl = getYouTubeEmbedUrl(
+    about?.youtubeUrl
+  );
 
   return (
     <div className="container">
@@ -90,15 +117,8 @@ function getYouTubeEmbedUrl(url) {
           content="https://demdrones.co.uk/social.png"
         />
 
-        <meta
-          property="og:image:width"
-          content="1600"
-        />
-
-        <meta
-          property="og:image:height"
-          content="900"
-        />
+        <meta property="og:image:width" content="1600" />
+        <meta property="og:image:height" content="900" />
 
         <meta
           name="twitter:card"
@@ -161,25 +181,25 @@ function getYouTubeEmbedUrl(url) {
                 )}
               </div>
 
-            {about?.youtubeUrl ? (
-  <iframe
-    src={getYouTubeEmbedUrl(about.youtubeUrl)}
-    title="DEMDRONES YouTube video"
-    width="640"
-    height="360"
-    loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowFullScreen
-    style={{
-      width: "100%",
-      aspectRatio: "16 / 9",
-      height: "auto",
-      border: 0,
-    }}
-  />
-) : about?.video?.url ? (
-  <IntroVideo url={about.video.url} />
-) : null}
+              {youtubeEmbedUrl ? (
+                <iframe
+                  src={youtubeEmbedUrl}
+                  title="DEMDRONES YouTube video"
+                  width="640"
+                  height="360"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  style={{
+                    width: "100%",
+                    aspectRatio: "16 / 9",
+                    height: "auto",
+                    border: 0,
+                  }}
+                />
+              ) : about?.video?.url ? (
+                <IntroVideo url={about.video.url} />
+              ) : null}
             </div>
           </section>
         ) : null}
@@ -341,6 +361,7 @@ export async function getStaticProps() {
         }
 
         bodyHeading
+        youtubeUrl
 
         body {
           json
