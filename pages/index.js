@@ -267,7 +267,7 @@ export default function Home(props) {
       <h2>Experiences & Events</h2>
     </div>
 
-    <ul className="unstyled-list dd-grid dd-grid--3col">
+   <ul className="unstyled-list">
       {events.items.filter(Boolean).map((event) => {
         const ticketOptions = (
   event.ticketOptionsCollection?.items?.filter(
@@ -288,14 +288,24 @@ const bookingLinks = (
 );
 
         return (
-          <li key={event.sys.id}>
+          <li
+  key={event.sys.id}
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: "2rem",
+    alignItems: "start",
+    padding: "1.5rem",
+    border: "1px solid rgba(255,255,255,.17)",
+  }}
+>
             {event.image ? (
               <div className="image-same-height">
                 <ImageOrVideo asset={event.image} />
               </div>
             ) : null}
 
-            <div style={{ marginTop: "1.25rem" }}>
+            <div>
               {event.eventType ? (
                 <p
                   style={{
