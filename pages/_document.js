@@ -34,10 +34,17 @@ export default function Document() {
         />
 
         <link
-          rel="icon"
-          href="/favicon.svg"
-          type="image/svg+xml"
-        />
+  rel="icon"
+  href="/demdrones-tab-icon.svg"
+  type="image/svg+xml"
+  sizes="any"
+/>
+
+<link
+  rel="shortcut icon"
+  href="/demdrones-tab-icon.svg"
+  type="image/svg+xml"
+/>
 
         <script
           type="application/ld+json"
